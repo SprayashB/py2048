@@ -1,0 +1,235 @@
+import os                 # TO GET OPERATING SYSTEM OF DEVICE FOR CLEAR SCREEN FUNCTION
+import random             # TO GENERATE RANDOM POSITIONS FOR INSERTING 2's
+import copy               # TO IMPLEMENT COPY BY VALUE OF board IN REAL TIME(RUN TIME) 
+
+size = int(input("Enter board size : ") or 5)  
+no = int(input("Enter winning Number : ") or 2048) 
+board = []
+
+# CREATING CROSS PLATFORM getch() FUNCTION TO ALLOW CHARACTER INPUT WITHOUR PRESSING ENTER
+if(os.name == 'nt'): 
+    from msvcrt import getch
+else:
+    def getch():
+        import sys, tty, termios
+        fd = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(fd)
+        try:
+            tty.setraw(sys.stdin.fileno())
+            ch = sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+        return ch
+
+# CREATING BOARD ACCORDING TO REQUIRED SIZE
+def create_board(size):
+	for row in range( size ):
+		row = [] 
+		for j in range( size ): 
+			row.append( 0 )
+		board.append( row )
+	return board
+
+# CLEAR SCREEN FUNCTION
+def clear(): 
+  
+    # FOR WINDOWS 
+    if os.name == 'nt': 
+        _ = os.system('cls') 
+  
+    # FOR MAC(posix) AND LINUX
+    else: 
+        _ = os.system('clear')	
+
+# DISPLAYING BOARD
+def display(board):	
+	largest = board[0][0]
+	for i in range(size):
+		for j in range(size):
+			if(largest < board[i][j]):
+				largest = board[i][j]
+	 # THE SPACES FOR THE ENTIRE BOARD ARE DECIDED BY THE LENGTH OF THE LARGEST NUMBER ON THE BOARD
+	spaces = len(str(largest))
+	for i in range( size ): 
+		for j in range(size):
+			curr_space = len(str(board[i][j])) - 1               
+			# THE -1 IS PRESENT TO ENSURE THAT THERE IS ATLEAST ONE SPACE(_) BETWEEN ELEMENTS 
+			print(str(board[i][j]) , end = " "*(spaces - curr_space))
+		print() # FOR NEW LINE SINCE end HAS BEEN CHANGED IN PREVIOUS STATEMENT
+	print() 
+ 
+''' FUNCTION CHECKING IF PLAYER WON
+       THIS IS DONE BY COMPARING EACH ELEMENT ON THE BOARD WITH THE WINNING NUMBER.
+       IF ACHIEVED TRUE IS RETURNED ''' 
+def win(board):
+	for i in board:
+		for j in i:
+			if (j >= no):
+				return True
+	return False
+
+# FUNCTION MERGING A ROW TO THE RIGHT('D' KEY)
+def row_right_merge(row):
+	# LOOP REPEATED (size - 1) TIMES TO SHIFT ALL 0s TO THE LEFT
+	for j in range(size - 1):
+		#TEST FOR 0 AND REPLACE
+		for i in range(size - 1):
+			if row[i + 1] == 0:
+				row[i + 1] = row[i]
+				row[i] = 0
+
+	# MERGING SIMILAR VALUES IN A ROW
+	for i in range(size - 1, 0, -1):
+		if row[i] == row[i - 1]:
+		    row[i] *= 2
+		    row[i - 1] = 0
+
+	# PUSHING EMPTY SPACES AFTER NON-ZERO CONTIGUOUS VALUES MERGE
+	for j in range(size - 1):
+		for i in range(size - 1):
+			if row[i + 1] == 0:
+				row[i + 1] = row[i]
+				row[i] = 0
+	return row
+
+# FUNCTION MERGING ALL ROWS OF BOARD TO THE RIGHT('D' KEY)	
+def full_right_merge(board):
+	for i in range(size):
+		board[i] = row_right_merge(board[i])
+	return board
+
+
+# FUNCTION MERGING A ROW TO THE LEFT('A' KEY)
+def row_left_merge(row):
+	# LOOP REPEATED (size - 1) TIMES TO SHIFT ALL 0s TO THE RIGHT
+	for j in range(size - 1):
+		# TEST FOR EMPTY SPACE AND REPLACE
+		for i in range(size-1 , 0 , -1):
+			if row[i - 1] == 0:
+				row[i - 1] = row[i]
+				row[i] = 0
+
+	# MERGING SIMILAR VALUES IN A ROW
+	for i in range(size - 1):
+		if row[i] == row[i + 1]:
+		    row[i] *= 2
+		    row[i + 1] = 0
+
+	# PUSHING EMPTY SPACES AFTER NON-ZERO CONTIGUOUS VALUES MERGE
+	for j in range(size - 1):
+		for i in range(size-1 , 0 , -1):
+			if row[i - 1] == 0 :
+				row[i - 1] = row[i]
+				row[i] = 0
+	return row
+
+
+# FUNCTION MERGING ALL ROWS OF BOARD TO THE LEFT('A' KEY)	
+def full_left_merge(board):
+	for i in range(size):
+		board[i] = row_left_merge(board[i])
+	return board
+
+# FUNCTION TO ADD 2 AT ANY RANDOM POSITION ON BOARD WITH 0 AS ITS VALUE
+def random_add(board):
+	flag = 0
+	while(flag == 0):
+		# 'i' AND 'j' REPRESENT ROW AND COLUMN 
+		i  = random.randint(0, size - 1) 
+		j  = random.randint(0, size - 1)
+		if(board[i][j] == 0):
+			board[i][j] = 2
+			flag = 1
+	return board
+
+''' CREATING TRANSPOSE FUNCTION FOR REDUCING CODE
+	THIS IS DONE SO BECAUSE 
+		1. TRANSPOSE -> MERGE LEFT -> TRANSPOSE <=> MERGE UP
+		2. TRANSPOSE -> MERGE RIGHT -> TRANSPOSE <=> MERGE DOWN  ''' 
+def transpose(board):
+	for i in range(size):
+		for j in range(i,size):
+			if(i != j):
+				board[i][j], board[j][i] = board[j][i], board[i][j]				
+	return board
+
+# FUNCTION MERGING BOARD UP('W' KEY)
+def merge_up(board):
+	board = transpose(board)
+	board = full_left_merge(board)
+	board = transpose(board)
+	return board
+
+# FUNCTION MERGING BOARD DOWN('S' KEY)
+def merge_down(board):
+	board = transpose(board)
+	board = full_right_merge(board)
+	board = transpose(board)
+	return board
+
+''' FUNCTION CHECKING IF PLAYER LOST
+	THIS IS DONE BY TAKING  A COPY OF THE BOARD,
+	MERGING IT IN ALL POSSIBLE DIRECTIONS WHILE COMPARING IT 
+	WITH THE BOARD AFTER EACH MERGE.
+	IF THE BOARD IS SAME AS COPY IN ALL COMPARIONS THE PLAYER HAS LOST 
+	AS THEY HAVE NO POSSIBLE MOVES '''
+def loss(board):
+	temp1= copy.deepcopy(board)
+	temp1 = merge_up(temp1)
+	if temp1 == board:
+		temp1 = merge_down(temp1)
+		if temp1 == board:
+			temp1 = full_right_merge(temp1)
+			if temp1 == board:
+				temp1 = full_left_merge(temp1)
+				if temp1 == board:
+					return True
+	return False
+
+# START OF GAME
+board = create_board(size)
+board = random_add(board)
+display(board)
+
+status = False
+while True:
+	if(not status):
+		status = True
+	else:
+		clear()
+		board = random_add(board)
+		display(board)
+
+	if win(board):
+		clear()
+		display(board)
+		print("GAME WON!!")
+		break
+	else:	
+		if loss(board):
+			clear()
+			display(board)
+			print("YOU LOST THE GAME")
+			break
+
+	print("ENTER DIRECTION")
+	direction = getch()
+
+	check = copy.deepcopy(board)
+
+	if(direction == 'w' or direction == 'W'):
+		board = merge_up(board)
+	elif(direction == 's' or direction == 'S'):
+		board = merge_down(board)
+	elif(direction == 'A' or direction == 'a'):
+		board = full_left_merge(board)
+	elif(direction == 'd' or direction == 'D'):
+		board = full_right_merge(board)	
+	else: 
+		status = False
+
+	if(not status):
+		print("YOU HAVE ENTERED THE INPUT WRONG!!!!")
+	elif check == board:
+		print("UNSUCCESSFUL MOVE")
+		status = False
