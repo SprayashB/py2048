@@ -29,35 +29,35 @@ A user loses the game when they have no possible directions left for movement, t
   
 Default input(5 and 2048)
 
-![](media/default.png)
+![](/media/default.png)
 	   
-Left Movement
+Moving Left
 
-![](media/left.png)
+![](/media/left.png)
 	   
-Right Movement
+Moving Right
 
-![](media/right.png)
+![](/media/right.png)
 	   
-Up movement
+Moving Up
 
-![](media/up.png)
+![](/media/up.png)
 
 Winning game
 
-![](media/win1.png)
-![](media/win2.png)
-![](media/win3.png)
-![](media/win4.png)
+![](/media/win1.png)
+![](/media/win2.png)
+![](/media/win3.png)
+![](/media/win4.png)
 
 Losing game
-![](media/loss1.png)
-![](media/loss2.png)
-![](media/loss3.png)
-![](media/loss4.png)
-![](media/loss5.png)
-![](media/loss6.png)
+![](/media/loss1.png)
+![](/media/loss2.png)
+![](/media/loss3.png)
+![](/media/loss4.png)
+![](/media/loss5.png)
+![](/media/loss6.png)
  
-Unsuccessful output ( Direction entered was left )
+Unsuccessful movee ( Direction entered was left )
 
-![](media/unsuccessful_move.png)
+![](/media/unsuccessful_move.png)
