@@ -30,7 +30,7 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Default input(5 and 2048)</summary>
 <p>
 
-![](/media2/default.jpeg)
+![](/media2/default.jpg)
 
 </p>
 </details>
@@ -38,7 +38,7 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Moving Left</summary>
 <p>
 
-![](/media2/left.jpeg)
+![](/media2/left.jpg)
 
 </p>
 </details>
@@ -46,7 +46,7 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Moving Right</summary>
 <p>
 
-![](/media2/right.jpeg)
+![](/media2/right.jpg)
 
 </p>
 </details>
@@ -54,7 +54,7 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Moving Down</summary>
 <p>
 
-![](/media2/down.jpeg)
+![](/media2/down.jpg)
 
 </p>
 </details>
@@ -62,7 +62,7 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Moving Up</summary>
 <p>
 
-![](/media2/up.jpeg)
+![](/media2/up.jpg)
 
 </p>
 </details>
@@ -70,11 +70,11 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Winning game</summary>
 <p>
 
-![](/media2/win1.jpeg)
-![](/media2/win2.jpeg)
+![](/media2/win1.jpg)
+![](/media2/win2.jpg)
 
-![](/media2/win3.jpeg)
-![](/media2/win4.jpeg)
+![](/media2/win3.jpg)
+![](/media2/win4.jpg)
 
 </p>
 </details>
@@ -82,14 +82,14 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Losing game</summary>
 <p>
 
-![](/media2/loss1.jpeg)
-![](/media2/loss2.jpeg)
+![](/media2/loss1.jpg)
+![](/media2/loss2.jpg)
 
-![](/media2/loss3.jpeg)
-![](/media2/loss4.jpeg)
+![](/media2/loss3.jpg)
+![](/media2/loss4.jpg)
 
-![](/media2/loss5.jpeg)
-![](/media2/loss6.jpeg)
+![](/media2/loss5.jpg)
+![](/media2/loss6.jpg)
 
 </p>
 </details>
@@ -97,7 +97,7 @@ A user loses the game when they have no possible directions left for movement, t
 <details><summary>Unsuccessful move (Direction entered was left)</summary>
 <p>
 
-![](/media2/unsuccessful_move.jpeg)
+![](/media2/unsuccessful_move.jpg)
 
 </p>
 </details>
