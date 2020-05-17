@@ -46,16 +46,25 @@ Moving Up
 Winning game
 
 ![](/media/win1.png)
+
 ![](/media/win2.png)
+
 ![](/media/win3.png)
+
 ![](/media/win4.png)
 
 Losing game
+
 ![](/media/loss1.png)
+
 ![](/media/loss2.png)
+
 ![](/media/loss3.png)
+
 ![](/media/loss4.png)
+
 ![](/media/loss5.png)
+
 ![](/media/loss6.png)
  
 Unsuccessful movee ( Direction entered was left )
