@@ -1,7 +1,7 @@
 import os                 # TO GET OPERATING SYSTEM OF DEVICE FOR CLEAR SCREEN FUNCTION
 import random             # TO GENERATE RANDOM POSITIONS FOR INSERTING 2's
 import copy               # TO IMPLEMENT COPY BY VALUE OF board IN REAL TIME(RUN TIME) 
-import argparse
+import argparse		  # TO IMPLEMENT COMMAND LINE ARGUMENT INPUT
 
 a = argparse.ArgumentParser()
 

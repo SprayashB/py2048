@@ -2,9 +2,16 @@ import os                 # TO GET OPERATING SYSTEM OF DEVICE FOR CLEAR SCREEN F
 import random             # TO GENERATE RANDOM POSITIONS FOR INSERTING 2's
 import copy               # TO IMPLEMENT COPY BY VALUE OF board IN REAL TIME(RUN TIME) 
 
-size = int(input("Enter board size : ") or 5)  
-no = int(input("Enter winning Number : ") or 2048) 
 board = []
+variable = False
+while(variable == False):
+    try:
+        size = int(input("Enter board size : ") or 5)  
+        no = int(input("Enter winning Number : ") or 2048) 
+        variable = True
+    except ValueError:
+        print("TRY AGAIN WITH PROPER VALUES")
+    
 
 # CREATING CROSS PLATFORM getch() FUNCTION TO ALLOW CHARACTER INPUT WITHOUR PRESSING ENTER
 if(os.name == 'nt'): 
