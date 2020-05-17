@@ -29,18 +29,18 @@ A user loses the game when they have no possible directions left for movement, t
   
 Default input(5 and 2048)
 
-![](/media/default.png)
+![](/media2/default.png)
 	   
 Moving Left
 
-![](/media/left.png)
+![](/media2/left.png)
 	   
 Moving Right
 
-![](/media/right.png)
+![](/media2/right.png)
 	   
 Moving Up
 
-![](/media/up.png)
+![](/media2/up.png)
 
 
