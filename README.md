@@ -1,7 +1,7 @@
 
 ***NOTE : The files for both programs are .txt extension since my PC does not have Python installed.***
 
-**Two code files have been uploaded because I couldn't run a program with command line arguments on an online compiler. The second file is working correctly where inputs have been taken during execution** 
+**Two code files have been uploaded because I couldn't run a program with command line arguments on an online compiler. The second file, that is, *IV ASSIGNMENT 1 (2048 GAME)* is working correctly where inputs have been taken during execution** 
 
 # TASK : PYTHON PROGRAM TO IMPLEMENT 2048 GAME. 
 
